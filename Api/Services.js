@@ -85,3 +85,18 @@ export const getBuscarPeliculas = async (id) => {
     return [];
   }
 };
+
+export const getPelisInfoId = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/${id}`, {
+      params: {
+        api_key: api_key,
+      },
+      ...options,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+};

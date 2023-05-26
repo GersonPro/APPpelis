@@ -7,7 +7,7 @@ import Home from "./screens/Home"
 import { LinearGradient } from 'expo-linear-gradient';
 import Busqueda from './componentes/Busqueda';
 import ResultadosBusqueda from './screens/ResultadosBusqueda';
-
+import DetallePeli from './screens/DetallePeli';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +45,8 @@ function MyStack() {
     />
        <Stack.Screen name="Busqueda" component={Busqueda} />
         <Stack.Screen name="ResultadosBusqueda" component={ResultadosBusqueda} />
+        <Stack.Screen name="DetallePeli" component={DetallePeli} />
+
       </Stack.Navigator>
 
     );

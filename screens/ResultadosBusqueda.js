@@ -1,80 +1,44 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text,FlatList,ScrollView  } from 'react-native';
-import { getBuscarPeliculas } from '../Api/Services';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, Button, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Busqueda = () => {
-  const [id, setId] = useState('');
-  const [resultado, setResultado] = useState(null);
 
-  const buscarPeli = async () => {
-    try {
-      const data = await getBuscarPeliculas(id);
-      setResultado(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const renderMovieItem = ({ item }) => (
-    <View style={styles.container}> 
- 
-    {resultado && (
-        <><Text style={styles.title}>a {JSON.stringify(item.title)}</Text>
-        <Text style={styles.text}> {JSON.stringify(item.name)}</Text></>
-      )}
-   
-  </View>
-  );
+const ResultadosBusqueda = ({ resultados }) => {
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-        
-       <TextInput
-      style={styles.input}
-      value={id}
-      onChangeText={setId}
-      placeholder="Buscar"
-      placeholderTextColor="rgba(255, 255, 255, 0.5)"
-    />
-    <Button style={styles.butom} title="Buscar" onPress={buscarPeli} />
-    <FlatList
-    style={styles.flat}
-      data={resultado}
-      renderItem={renderMovieItem}
-      keyExtractor={(item) => item.id.toString()}
-    />
-  </View>
+      <Text style={styles.title}>Resultados de búsqueda:</Text>
+      {resultados && resultados.map((item, index) => (
+        <View key={index} style={styles.itemContainer}>
+          <Text style={styles.text}>{item.title}</Text>
+          <Text style={styles.text}>{item.name}</Text>
+          
+        </View>
+      ))}
+
+      <Button title="Volver" onPress={() => navigation.goBack()} />
+    </View>
+      );
+    };
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      padding: 10,
+      
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+    },
+    itemContainer: {
+      marginBottom: 5,
+    },
+    text: {
+      fontSize: 16,
+    },
+  });
   
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  input: {
-    flex: 1,
-    marginRight: 5,
-    borderRadius: 15,
-    paddingVertical: 3,
-    paddingHorizontal: 35,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    
-  
-},
-  butom: {
-    
-
-
-
-  },
-  flat: { 
-    backgroundColor: "#fff",
-    position: "relative",
-    top: 55,
-    height: "100%"
-  }
-});
-
-export default Busqueda;
+  export default ResultadosBusqueda;

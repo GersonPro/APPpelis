@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 import { getPelisInfo } from '../Api/Services';
 
 const Home = () => {
   const [pelisList, setPelisList] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function fetchData() {
@@ -16,26 +18,33 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const renderMovieItem = ({ item }) => (
-    <View style={styles.slide}>
-      <Image
-        source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-         <LinearGradient
-        colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 8, 8)']}
-        style={styles.titleBackground}
-        resizeMode="cover"
-      >
-      <Text style={styles.Text} resizeMode="cover" >{item.title}</Text>
-        </LinearGradient>
-    </View>
-  );
+  const handleMoviePress = (id) => {
+    navigation.navigate('DetallePeli', { id });
+  };
+
+  const renderMovieItem = ({ item }) => {
+    return (
+      <TouchableOpacity onPress={() => handleMoviePress(item.id)}>
+        <View style={styles.slide}>
+          <Image
+            source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <LinearGradient
+            colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 8, 8)']}
+            style={styles.titleBackground}
+            resizeMode="cover"
+          >
+            <Text style={styles.Text} resizeMode="cover">{item.title}</Text>
+          </LinearGradient>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View>
-      
       <Carousel
         style={styles.carousel}
         data={pelisList}
@@ -43,8 +52,6 @@ const Home = () => {
         sliderWidth={360}
         itemWidth={360}
       />
-     
-
     </View>
   );
 };
@@ -55,9 +62,6 @@ const styles = StyleSheet.create({
   },
   slide: {
     // Estilos para cada elemento del carrusel
-    
-
- 
   },
   image: {
     width: 'auto',
@@ -65,8 +69,7 @@ const styles = StyleSheet.create({
     marginTop: -200,
     zIndex: 0
   },
-
-  Text: { 
+  Text: {
     color: '#cfcfcf',
     fontSize: 25,
     textAlign: 'center',

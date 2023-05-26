@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, TextInput, Button, StyleSheet, Text, FlatList, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import { getBuscarPeliculas } from '../Api/Services';
-import ResultadosBusqueda from '../screens/ResultadosBusqueda';
 import { useNavigation } from '@react-navigation/native';
-import { Center, IconButton, VStack, NativeBaseProvider } from "native-base";
-import { AntDesign } from "@expo/vector-icons";
+
+
 
 const Busqueda = () => {
   const navigation = useNavigation();
