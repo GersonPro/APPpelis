@@ -19,7 +19,7 @@ const Home = () => {
   }, []);
 
   const handleMoviePress = (id) => {
-    navigation.navigate('DetallePeli', { id });
+    navigation.navigate('Detalle', { id });
   };
 
   const renderMovieItem = ({ item }) => {

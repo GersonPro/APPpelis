@@ -45,7 +45,7 @@ function MyStack() {
     />
        <Stack.Screen name="Busqueda" component={Busqueda} />
         <Stack.Screen name="ResultadosBusqueda" component={ResultadosBusqueda} />
-        <Stack.Screen name="DetallePeli" component={DetallePeli} />
+        <Stack.Screen name="Detalle" component={DetallePeli} />
 
       </Stack.Navigator>
 

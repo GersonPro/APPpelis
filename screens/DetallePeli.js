@@ -31,7 +31,7 @@ const DetallePeli = ({ route }) => {
         <>
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500${resultado.poster_path}` }}
-            style={styles.tinyLogo}
+            style={styles.image}
             resizeMode="cover"
           />
           <View style={styles.contentContainer}>
@@ -50,15 +50,14 @@ const DetallePeli = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+   
+    
     backgroundColor: '#272727',
-    padding: 20,
+    
   },
   contentContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
     marginTop: 20,
   },
   tinyLogo: {
@@ -68,11 +67,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 36,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 10,
-    textAlign: 'center',
+    
   },
   overview: {
     fontSize: 16,
@@ -92,6 +91,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  image: {
+    width: '100%',
+    height: 600,
+    marginTop: -300,
   },
 });
 
