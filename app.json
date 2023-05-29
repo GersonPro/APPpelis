@@ -4,12 +4,12 @@
     "slug": "ApiPelis",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#202634"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +19,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/Logo.png",
+        "backgroundColor": "#202634",
+        "peckage": "com.loricode.applibro",
+        "versionCode": 1
+      },
+      "package": "com.vene2001.ApiPelis"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c7018de8-7497-4f34-933c-80216fdecabb"
+      }
     }
   }
 }

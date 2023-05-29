@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView,TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 import { getPelisInfo } from '../Api/Services';
 
 const CateEstrenos = () => {
   const [pelisList, setPelisList] = useState([]);
+  const navigation = useNavigation();
+
 
   useEffect(() => {
     async function fetchData() {
@@ -16,9 +19,13 @@ const CateEstrenos = () => {
 
     fetchData();
   }, []);
-
+  const handleMoviePress = (id) => {
+    navigation.navigate('Detalle', { id });
+  };
   const renderMovieItem = ({ item }) => (
-   
+    
+    <TouchableOpacity onPress={() => handleMoviePress(item.id)}>
+
     <View style={styles.slide}>
       
       <Image
@@ -28,6 +35,7 @@ const CateEstrenos = () => {
       />
        
     </View>
+    </TouchableOpacity>
   );
 
   return (

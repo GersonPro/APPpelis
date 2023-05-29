@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       marginVertical: -90,
       marginBottom: 0,
       paddingBottom: 10,
-      backgroundColor: "#272727"
+      backgroundColor: "#202634"
      
      
     },

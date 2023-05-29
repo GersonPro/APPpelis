@@ -1,12 +1,16 @@
 // Importa los componentes y las funciones necesarias
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getPelisComedia } from '../Api/Services';
+import { useNavigation } from '@react-navigation/native';
+
 
 const CateComedia = () => {
     const [PelisComedia, setPelisComedia] = useState([]);
+    const navigation = useNavigation();
+
   
     useEffect(() => {
       async function fetchData() {
@@ -22,8 +26,12 @@ const CateComedia = () => {
   
       fetchData();
     }, []);
-  
+    const handleMoviePress = (id) => {
+      navigation.navigate('Detalle', { id });
+    };
     const renderMovieItem = ({ item }) => (
+      <TouchableOpacity onPress={() => handleMoviePress(item.id)}>
+
       <View style={styles.slide}>
         <Image
           source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
@@ -31,6 +39,7 @@ const CateComedia = () => {
           resizeMode="cover"
         />
       </View>
+      </TouchableOpacity>
     );
   
     return (

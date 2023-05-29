@@ -20,7 +20,12 @@ const Busqueda = () => {
       console.error(error);
     }
   };
+  const handleMoviePress = (id) => {
+    navigation.navigate('Detalle', { id });
+  };
   const renderMovieItem = ({ item }) => (
+    <TouchableOpacity onPress={() => handleMoviePress(item.id)}>
+
     <View style={styles.container}>
     {resultado && (
       <>
@@ -39,6 +44,7 @@ const Busqueda = () => {
       
     )}
   </View>
+  </TouchableOpacity>
   );
 
   useEffect(() => {
@@ -59,7 +65,9 @@ const Busqueda = () => {
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
       />
 
-      <TouchableOpacity title="Buscar" onPress={buscarPeli} >
+      <TouchableOpacity title="Buscar" onPress={buscarPeli} style={styles.boton}
+>
+        
       <Image
             source={{ uri: `https://www.pngplay.com/wp-content/uploads/9/Loupe-Background-PNG.png` }}
             style={styles.search}
@@ -102,13 +110,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    width: 250,
   },
   input: {
+    position: "relative",
+    right:20,
     flex: 1,
-    marginRight: 5,
+    marginRight: 0,
     borderRadius: 15,
     paddingVertical: 3,
     paddingHorizontal: 35,
+    marginLeft: 10,
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
   modalContainer: {
@@ -166,10 +178,25 @@ const styles = StyleSheet.create({
   },
   search:
   {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     borderRadius: 10,
-    marginRight: 15,
+
+
+    
+
+  },
+  boton : {
+    width:60,
+    height: 35,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    marginRight: 30,
+    borderRadius: 30,
+    paddingTop:10,
+    paddingLeft: 20,
+
+    
+
   }
 });
 
